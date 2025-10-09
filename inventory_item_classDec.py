@@ -47,3 +47,10 @@ class InventoryItem:
                 expiryDate = input ("Invalid expiry date, please re-enter in format DD/MM/YYYY: ")
 
         return expiryDate
+
+    def displayItem(self):
+        print(f"Name         : {self.name}")
+        print(f"Product code : {self.productCode}")
+        print(f"Expiry Date  : {self.expiryDate.strftime('%m/%d/%Y')}")
+        print(f"Quantity     : {self.quantity}")
+        print(f"Location     : {self.location}")
