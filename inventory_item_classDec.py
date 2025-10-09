@@ -11,7 +11,6 @@ class InventoryItem:
     #initialises new inventory item
     def __init__ (self):
         #declares each attribute with validation functions
-
         na = input("Name         : ")
         self.name = self.validStrInput(na)
         pC = input("Product code : ")
