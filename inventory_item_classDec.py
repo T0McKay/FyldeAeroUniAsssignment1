@@ -22,21 +22,33 @@ class InventoryItem:
         lo = input("Location     : ")
         self.location = self.validStrInput(lo)
 
+    def displayItem(self):
+        print(f"Product code : {self.productCode}")
+        print(f"Name         : {self.name}")
+        print(f"Expiry Date  : {self.expiryDate.strftime('%m/%d/%Y')}")
+        print(f"Quantity     : {self.quantity}")
+        print(f"Location     : {self.location}")
+
+#the following are class methods used for validation across the system:
+
     # used to validate name and location attributes
-    def validStrInput(self, inputStr):
+    @classmethod
+    def validStrInput(cls, inputStr):
         # checks if name is empty string
         while inputStr.isdigit() or len(inputStr) <= 0:
             inputStr = input ("Invalid, please re-enter: ")
         return inputStr
 
     # used to validate product code and quantity attributes
-    def validIntInput(self, inputInt):
+    @classmethod
+    def validIntInput(cls, inputInt):
         # checks if product code is a positive number - if not loops until it is
         while not (inputInt.isdigit() and int(inputInt) > 0):
             inputInt = input ("Invalid, please re-enter: ")
         return int(inputInt)
 
-    def validExpiryDate(self, expiryDate):
+    @classmethod
+    def validExpiryDate(cls, expiryDate):
         #checks the expiry date is correctly formatted as DD/MM/YYYY
         valid = False
         while not valid:
@@ -45,12 +57,4 @@ class InventoryItem:
                 valid = True
             except ValueError:
                 expiryDate = input ("Invalid expiry date, please re-enter in format DD/MM/YYYY: ")
-
         return expiryDate
-
-    def displayItem(self):
-        print(f"Name         : {self.name}")
-        print(f"Product code : {self.productCode}")
-        print(f"Expiry Date  : {self.expiryDate.strftime('%m/%d/%Y')}")
-        print(f"Quantity     : {self.quantity}")
-        print(f"Location     : {self.location}")

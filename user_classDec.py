@@ -7,7 +7,7 @@ class User:
 
     #used to log in - checks userID and returns true if matches parameter
     @classmethod # this function belongs to the class not an individual user object
-    def verifyIfUser(self, queriedUserID):
+    def verifyIfUser(cls, queriedUserID):
         #loops through known users to check if the ID entered is one
         for i in User.ListOfUsers:
             if i == queriedUserID:
