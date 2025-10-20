@@ -1,5 +1,5 @@
 from inventory_item_classDec import InventoryItem #to get information about item
-from tabulate import tabulate #used to print items in table format
+from tabulate import tabulate
 from datetime import datetime, date
 import csv, os
 
@@ -33,7 +33,7 @@ class InventoryDatabase:
         #saves new item to csv:
         with open("inventory.csv", "a",newline="") as csvfile:
             writingToFile = csv.writer(csvfile)
-            writingToFile.writerow(item.__dict__.values()) #.dict.values turns object into dictionary so attributes can be written to csv
+            writingToFile.writerow(item.__dict__.values()) #.__dict__.values turns object into dictionary so attributes can be written to csv
         print("")
         print("Item added successfully")
 
@@ -47,9 +47,10 @@ class InventoryDatabase:
         if self.ListOfItems.__len__() == 0: #if list is empty then there's no items
             print("No items in inventory database")
         else:
-            for i in self.ListOfItems: #loops through every index in the list
-                i.displayItem()
-                print("")
+            headers = ["Name", "Product Code", "Expiry Date", "Quantity", "Location"]
+            tableOfItems = [item.__dict__.values() for item in self.ListOfItems]
+            print(tabulate(tableOfItems, headers=headers, tablefmt="grid"))
+            print("")
 
     #removes requested item (parameter) from the list ----- NEEDS TO BE FIXED
     def removeItem (self):
