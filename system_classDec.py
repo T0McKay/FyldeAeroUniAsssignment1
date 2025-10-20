@@ -46,15 +46,12 @@ class SystemClass:
         choice = int(choice) #for int condition checking
 
         if choice == 1: #view or search
-            os.system("cls")
             self.invDatabase.viewItems()
         elif choice == 2: # add
-            os.system("cls")
             self.invDatabase.addItem()
         #elif choice == 3: #edit/update
             #ignore for now
         elif choice == 4: #remove
-            os.system("cls")
             self.invDatabase.removeItem()
         elif choice == 5: #log out
             #saves everything to file

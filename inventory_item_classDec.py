@@ -1,32 +1,20 @@
 from datetime import datetime, date
 
 class InventoryItem:
-    # declares attributes
-    name: str
-    productCode: int
-    expiryDate: date
-    quantity: int
-    location: str
 
     #initialises new inventory item
-    def __init__ (self):
-        #declares each attribute with validation functions
-        inputName = input("Name         : ")
-        self.name = self.validStrInput(inputName)
-        inputProductCode = input("Product code : ")
-        self.productCode = self.validIntInput(inputProductCode)
-        inputExpiryDate = input("Expiry Date  : ")
-        self.expiryDate = self.validExpiryDate(inputExpiryDate)
-        inputQuantity = input("Quantity     : ")
-        self.quantity = self.validIntInput(inputQuantity)
-        inputLocation = input("Location     : ")
-        self.location = self.validStrInput(inputLocation)
+    def __init__ (self,name,productCode,expiryDate,quantity,location):
+        self.name = name
+        self.productCode = productCode
+        self.expiryDate = expiryDate
+        self.quantity = quantity
+        self.location = location
 
     #displays an items defined attributes
     def displayItem(self):
         print(f"Product code : {self.productCode}")
         print(f"Name         : {self.name}")
-        print(f"Expiry Date  : {self.expiryDate.strftime('%m/%d/%Y')}")
+        print(f"Expiry Date  : {self.expiryDate}")
         print(f"Quantity     : {self.quantity}")
         print(f"Location     : {self.location}")
 
@@ -60,3 +48,21 @@ class InventoryItem:
             except ValueError:
                 expiryDate = input ("Invalid expiry date, please re-enter in format DD/MM/YYYY: ")
         return expiryDate
+
+    #this method is used when the attributes need to be chosen by the user
+    @classmethod
+    def initialiseItemUsingUserInput(cls):
+        # declares each attribute with validation functions
+        inputName = input("Name         : ")
+        inputName = cls.validStrInput(inputName)
+        inputProductCode = input("Product code : ")
+        inputProductCode = cls.validIntInput(inputProductCode)
+        inputExpiryDate = input("Expiry Date  : ")
+        inputExpiryDate = cls.validExpiryDate(inputExpiryDate)
+        inputQuantity = input("Quantity     : ")
+        inputQuantity = cls.validIntInput(inputQuantity)
+        inputLocation = input("Location     : ")
+        inputLocation = cls.validStrInput(inputLocation)
+        # actually creates item
+        newItem = InventoryItem(inputName, inputProductCode, inputExpiryDate, inputQuantity, inputLocation)
+        return newItem
