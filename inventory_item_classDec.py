@@ -11,17 +11,18 @@ class InventoryItem:
     #initialises new inventory item
     def __init__ (self):
         #declares each attribute with validation functions
-        na = input("Name         : ")
-        self.name = self.validStrInput(na)
-        pC = input("Product code : ")
-        self.productCode = self.validIntInput(pC)
-        ex = input("Expiry Date  : ")
-        self.expiryDate = self.validExpiryDate(ex)
-        qu = input("Quantity     : ")
-        self.quantity = self.validIntInput(qu)
-        lo = input("Location     : ")
-        self.location = self.validStrInput(lo)
+        inputName = input("Name         : ")
+        self.name = self.validStrInput(inputName)
+        inputProductCode = input("Product code : ")
+        self.productCode = self.validIntInput(inputProductCode)
+        inputExpiryDate = input("Expiry Date  : ")
+        self.expiryDate = self.validExpiryDate(inputExpiryDate)
+        inputQuantity = input("Quantity     : ")
+        self.quantity = self.validIntInput(inputQuantity)
+        inputLocation = input("Location     : ")
+        self.location = self.validStrInput(inputLocation)
 
+    #displays an items defined attributes
     def displayItem(self):
         print(f"Product code : {self.productCode}")
         print(f"Name         : {self.name}")
@@ -29,7 +30,7 @@ class InventoryItem:
         print(f"Quantity     : {self.quantity}")
         print(f"Location     : {self.location}")
 
-#the following are class methods used for validation across the system:
+#the following are class methods used for validation:
 
     # used to validate name and location attributes
     @classmethod
@@ -52,6 +53,7 @@ class InventoryItem:
         #checks the expiry date is correctly formatted as DD/MM/YYYY
         valid = False
         while not valid:
+            #to make sure it's in date format, program has to try the format - if it doesn't work then invalid message is output
             try:
                 expiryDate = datetime.strptime(expiryDate, "%d/%m/%Y").date() #makes a date and excludes time
                 valid = True
