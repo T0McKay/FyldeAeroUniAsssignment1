@@ -1,21 +1,20 @@
 from inventory_database_classDec import InventoryDatabase
-from inventory_item_classDec import InventoryItem
 from user_classDec import User
 import os, sys
 
 class SystemClass:
     invDatabase = InventoryDatabase()
 
-    def __init__(self, password):
-        self.password = password
+    def __init__(self):
+        User.initialiseListOfUsers()
+        self.login()
 
     def login(self):
         i = 0
         while i != 3 :
             inputID = input("Enter employee ID : ")
             inputPassword = input("Enter password    : ")
-
-            if User.verifyIfUser(inputID) and inputPassword == self.password:
+            if User.validateUser(inputID, inputPassword):
                 print("Login Successful")
                 print("")
                 return inputID #information will then be read from csv and database initialised in program
@@ -34,14 +33,15 @@ class SystemClass:
         print("-----------------------------------")
         print("")
         print("Please select an option:")
-        print("1 - View or Search Items")
+        print("1 - View Items")
         print("2 - Add Item")
         print("3 - Remove Item")
-        print("4 - Log out")
+        print("4 - Add User")
+        print("5 - Log out")
         print("")
         choice = input("Input: ")
         #as a specific range is needed, checking input is an option 1-5 must also be done
-        while not (choice.isdigit() and 0 < int(choice) < 5):
+        while not (choice.isdigit() and 0 < int(choice) < 6):
             choice = input("Invalid, please re-enter: ")
         choice = int(choice) #for int condition checking
 
@@ -52,8 +52,11 @@ class SystemClass:
         elif choice == 3: #remove
             self.invDatabase.removeItem()
         elif choice == 4: #log out
-            #saves everything to file
-            sys.exit(0) #exits program
+            User.addUserByInput()
+        elif choice == 5:
+            # saves everything to file
+            sys.exit(0)  # exits program
 
         input("Press any key to continue...")
         self.menu()
+

@@ -3,7 +3,6 @@ from tabulate import tabulate
 from datetime import datetime, date
 import csv, os
 
-
 class InventoryDatabase:
     #this is a class attribute - begins empty, only initialised after login
     ListOfItems = []
@@ -59,10 +58,11 @@ class InventoryDatabase:
         print("-------------------------------")
         print("")
         searchedProdCode = input("Please enter the PRODUCT CODE of the item you want to remove: ")
+        searchedProdCode = InventoryItem.validIntInput(searchedProdCode)
         print("")
         found = False
         for item in self.ListOfItems:  # loops through every item in the list
-            if item.productCode == int(searchedProdCode):
+            if item.productCode == searchedProdCode:
                 found = True
 
                 #checks correct item is about to be deleted:
@@ -83,7 +83,7 @@ class InventoryDatabase:
                     # adds all saved items to list to overwrite EXCEPT one to be deleted
                     with open("inventory.csv", "r", newline="") as csvfile:
                         for row in csv.reader(csvfile):
-                            if row[2] != searchedProdCode:
+                            if row[1] != searchedProdCode:
                                 itemsToKeep.append(row)
 
                     with open ("inventory.csv", "w", newline="") as csvfile:
@@ -100,5 +100,3 @@ class InventoryDatabase:
                     break #exits the for loop so program does not loop through rest of list
         if not found:
             print("Item not found")
-
-    
