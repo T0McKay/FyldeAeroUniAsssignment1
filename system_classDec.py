@@ -1,6 +1,6 @@
 from inventory_database_classDec import InventoryDatabase
 from user_classDec import User
-import os, sys
+import sys
 
 class SystemClass:
     invDatabase = InventoryDatabase()
@@ -17,17 +17,16 @@ class SystemClass:
             if User.validateUser(inputID, inputPassword):
                 print("Login Successful")
                 print("")
-                return inputID #information will then be read from csv and database initialised in program
+                self.menu()
             else:
                 print("Username or password incorrect")
                 print("")
                 i = i + 1
         #login has been attempted 3 times and failed - for safety system is shut down
         print("Login failed too many times. System Shutting Down.")
-        exit()
+        exit() #quits program
 
     def menu(self):
-        os.system("cls")
         print("-----------------------------------")
         print("--- FYLDE AERO INVENTORY SYSTEM ---")
         print("-----------------------------------")
