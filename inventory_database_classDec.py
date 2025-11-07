@@ -83,7 +83,7 @@ class InventoryDatabase:
                     # adds all saved items to list to overwrite EXCEPT one to be deleted
                     with open("inventory.csv", "r", newline="") as csvfile:
                         for row in csv.reader(csvfile):
-                            if row[1] != searchedProdCode:
+                            if row[1] != str(searchedProdCode):
                                 itemsToKeep.append(row)
 
                     with open ("inventory.csv", "w", newline="") as csvfile:
