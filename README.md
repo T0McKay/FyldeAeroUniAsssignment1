@@ -9,5 +9,7 @@ The program will automatically download this if it has not already been installe
 
 To run the program:
 - Run main.py
+- Valid username: ts67
+- Valid password: password
 
 Enjoy!
